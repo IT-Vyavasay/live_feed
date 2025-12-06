@@ -1,0 +1,88 @@
+# --- NODE.JS ---
+# dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# build output
+dist/
+build/
+.next/
+out/
+coverage/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# logs
+logs/
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# editor folders
+.vscode/
+.idea/
+
+
+# --- PYTHON ---
+# byte compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# virtual environment
+env/
+myvenv/
+venv/
+.venv/
+
+# python cache
+.pytest_cache/
+.ipynb_checkpoints/
+
+# distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# dotenv
+.env.*
+!.env.example
+
+# test & coverage
+.coverage
+.tox/
+htmlcov/
+coverage.xml
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# PyInstaller
+*.manifest
+*.spec
