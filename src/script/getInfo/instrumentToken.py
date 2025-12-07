@@ -1,5 +1,5 @@
 # 1. Instantiate the ScripSearch class
-from scrip_search import ScripSearch
+from neo_api_client.api.scrip_search import ScripSearch
 
 search_engine = ScripSearch(api_client)
 

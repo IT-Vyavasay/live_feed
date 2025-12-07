@@ -1,6 +1,7 @@
 import io
 import json
-
+import sys
+import os
 import requests
 from neo_api_client import rest
 from neo_api_client.exceptions import ApiException
