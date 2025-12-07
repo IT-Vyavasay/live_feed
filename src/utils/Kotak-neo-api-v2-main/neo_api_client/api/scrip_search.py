@@ -2,7 +2,7 @@ import io
 import json
 
 import requests
-from neo_api_client.exceptions import ApiException
+from ..exceptions import ApiException
 import pandas as pd
 
 

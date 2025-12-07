@@ -1,6 +1,6 @@
 import neo_api_client
-from neo_api_client.exceptions import ApiException
-from neo_api_client.settings import ORDER_SOURCE
+from ..exceptions import ApiException
+from ..settings import ORDER_SOURCE
 
 
 class OrderAPI(object):

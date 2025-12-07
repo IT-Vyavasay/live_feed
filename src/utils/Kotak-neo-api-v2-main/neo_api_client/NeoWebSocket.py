@@ -4,9 +4,9 @@ import threading
 import time
 
 import neo_api_client
-from neo_api_client.settings import stock_key_mapping, MarketDepthResp, QuotesChannel, \
+from .settings import stock_key_mapping, MarketDepthResp, QuotesChannel, \
     ReqTypeValues, index_key_mapping
-from neo_api_client.urls import ORDER_FEED_URL, ORDER_FEED_URL_ADC, \
+from .urls import ORDER_FEED_URL, ORDER_FEED_URL_ADC, \
     ORDER_FEED_URL_E21, ORDER_FEED_URL_E22, ORDER_FEED_URL_E41, ORDER_FEED_URL_E43
 
 

@@ -2,7 +2,7 @@ import inspect
 
 import neo_api_client
 from neo_api_client import req_data_validation
-from neo_api_client.api_client import ApiClient
+from .api_client import ApiClient
 
 
 class NeoAPI:

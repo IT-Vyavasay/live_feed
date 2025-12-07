@@ -2,7 +2,7 @@ from json import JSONDecodeError
 
 from requests import session
 
-from neo_api_client.settings import PROD_URL
+from ..settings import PROD_URL
 
 
 class TotpAPI(object):

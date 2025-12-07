@@ -1,6 +1,6 @@
 from neo_api_client import rest
-from neo_api_client import settings
-from neo_api_client.exceptions import ApiException
+from .. import settings
+from ..exceptions import ApiException
 
 
 class ScripMasterAPI(object):

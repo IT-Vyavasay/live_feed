@@ -1,4 +1,4 @@
-from neo_api_client.exceptions import ApiException
+from ..exceptions import ApiException
 
 
 class LimitsAPI(object):
