@@ -1,8 +1,8 @@
 import json
 
 import requests
-from neo_api_client import rest
-from neo_api_client import req_data_validation
+from .. import rest
+from .. import req_data_validation
 
 
 class LoginAPI(object):

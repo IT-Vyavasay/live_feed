@@ -1,8 +1,8 @@
 import inspect
 import json
 import neo_api_client
-from neo_api_client.api_client import ApiClient
-from neo_api_client.exceptions import ApiException, ApiValueError
+from .api_client import ApiClient
+from .exceptions import ApiException, ApiValueError
 
 
 class NeoAPI:

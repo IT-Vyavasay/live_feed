@@ -1,6 +1,6 @@
 import json
-from neo_api_client.exceptions import ApiValueError
-from neo_api_client.settings import exchange_segment_allowed_values, product_allowed_values, \
+from .exceptions import ApiValueError
+from .settings import exchange_segment_allowed_values, product_allowed_values, \
     order_type_allowed_values, segment_limits, exchange_limits, product_limits
 
 

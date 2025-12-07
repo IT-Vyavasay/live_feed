@@ -1,8 +1,8 @@
 import time
 import json
 import threading
-from utils.kotak_neo_api_main.neo_api_client.NeoWebSocket import NeoWebSocket
-from neo_websocket_class import NeoWebSocket # Import the class you saved
+from neo_api_client.api.scrip_search import ScripSearch 
+from neo_api_client.NeoWebSocket import NeoWebSocket# Import the class you saved
  
 
 # --- ⚠️ 1. REPLACE WITH YOUR ACTUAL CREDENTIALS ⚠️ ---

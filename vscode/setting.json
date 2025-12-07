@@ -1,0 +1,10 @@
+{
+    "python.defaultInterpreterPath": "path/to/your/venv/bin/python",
+    "python.testing.cwd": "${workspaceFolder}",
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.workspaceSymbols.enabled": true,
+    "python.analysis.extraPaths": [
+        "src"
+    ],
+    "terminal.integrated.cwd": "${workspaceFolder}"
+}

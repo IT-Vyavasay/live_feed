@@ -1,5 +1,5 @@
 import requests
-from neo_api_client import rest
+from .. import rest
 
 
 class TradeReportAPI(object):

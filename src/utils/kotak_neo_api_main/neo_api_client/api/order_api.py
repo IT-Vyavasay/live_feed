@@ -1,6 +1,6 @@
-import neo_api_client
-from neo_api_client import rest
-from neo_api_client.exceptions import ApiException
+
+from .. import rest
+from ..exceptions import ApiException
 
 
 class OrderAPI(object):

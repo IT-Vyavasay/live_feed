@@ -5,7 +5,7 @@ import logging
 import re
 import requests
 from six.moves.urllib.parse import urlencode
-from neo_api_client.exceptions import ApiException
+from .exceptions import ApiException
 
 
 class RESTClientObject(object):

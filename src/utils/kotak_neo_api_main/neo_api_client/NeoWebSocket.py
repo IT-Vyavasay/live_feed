@@ -2,11 +2,10 @@ import copy
 import json
 import threading
 import time
-
-import neo_api_client
-from neo_api_client.settings import stock_key_mapping, MarketDepthResp, QuotesChannel, \
+ 
+from .settings import stock_key_mapping, MarketDepthResp, QuotesChannel, \
     ReqTypeValues, index_key_mapping
-from neo_api_client.urls import ORDER_FEED_URL
+from .urls import ORDER_FEED_URL
 
 
 # from neo_api_client.logger import logger

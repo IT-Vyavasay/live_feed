@@ -1,13 +1,13 @@
 import requests
-from neo_api_client import rest
+from .. import rest
 
 
-class PositionsAPI(object):
+class OrderReportAPI(object):
     def __init__(self, api_client):
         self.api_client = api_client
         self.rest_client = api_client.rest_client
 
-    def position_init(self):
+    def ordered_books(self):
         header_params = {
             'Authorization': "Bearer " + self.api_client.configuration.bearer_token,
             "Sid": self.api_client.configuration.edit_sid,
@@ -17,15 +17,15 @@ class PositionsAPI(object):
         }
         query_params = {"sId": self.api_client.configuration.serverId}
 
-        URL = self.api_client.configuration.get_url_details("positions")
+        URL = self.api_client.configuration.get_url_details("order_book")
 
         try:
-            position_report = self.rest_client.request(
+            order_report = self.rest_client.request(
                 url=URL, method='GET',
                 query_params=query_params,
                 headers=header_params
             )
-            return position_report.json()
+            return order_report.json()
         except requests.exceptions.RequestException as e:
             # handle any exceptions that might be raised here
             print(f"Error occurred: {e}")

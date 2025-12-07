@@ -5,9 +5,9 @@ import logging
 import six
 import base64
 import jwt
-from neo_api_client.exceptions import ApiValueError
-from neo_api_client.urls import SESSION_UAT_BASE_URL, SESSION_PROD_BASE_URL, UAT_BASE_URL, PROD_BASE_URL
-from neo_api_client.settings import UAT_URL, PROD_URL
+from .exceptions import ApiValueError
+from .urls import SESSION_UAT_BASE_URL, SESSION_PROD_BASE_URL, UAT_BASE_URL, PROD_BASE_URL
+from .settings import UAT_URL, PROD_URL
 
 
 class NeoUtility:
