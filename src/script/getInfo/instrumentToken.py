@@ -1,6 +1,5 @@
 import threading
-import time
-from neo_api_client import NeoAPI
+import time 
 
 from utils.kotak_neo_api_main_v2.neo_api_client import NeoAPI
 from utils.constant import CONSUMER_KEY, MOBILE, UCC, MPIN, TOTP, ENVIRONMENT, MCX_GOLD_TOKEN
