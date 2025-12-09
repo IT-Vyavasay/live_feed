@@ -1,69 +1,30 @@
-import json
-from utils.kotak_neo_api_main_v2.neo_api_client import NeoAPI
-from utils.constant import USER_ID, CONSUMER_KEY, TOKEN, MOBILE, UCC, MPIN
+import sys
+import os
 
-# Your test instrument token
-RELIANCE_NSE_TOKEN = "11729"
+# Add the parent directory (LIVE_FEED) to the system path for package discovery
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from neo_api_client import NeoAPI
+from utils.constant import NEO_ACCESS_TOKEN, CONSUMER_KEY, CONSUMER_SECRET, DEV_ACCESS_TOKEN, API_TOKEN, MOBILE, NEO_FIN_KEY, SID, UCC, USER_PASSWORD, USER_ID, CLIENT_ID, CLIENT_PASSWORD, MPIN, TOTP, ENVIRONMENT, MCX_GOLD_TOKEN
 
-try:
-    # 1) Initialize client
-    client = NeoAPI(
-        environment="prod",
-        consumer_key=CONSUMER_KEY,
-        neo_fin_key=None,
-        access_token=None
-    )
+print("initialize")
+client = NeoAPI(environment='prod', access_token=None, neo_fin_key=None, consumer_key=NEO_ACCESS_TOKEN)
 
-    print("✔ NeoAPI Client Initialized")
+print("client created")
 
-    # 2) Read TOTP
-    totp_value = input("Enter TOTP shown in your Authenticator app: ")
+# Step 1: Login TOTP → generates view_token
+totp_num = input("Enter totp: ")
+client.totp_login(mobile_number=MOBILE, ucc=UCC, totp=totp_num)
+print("TOTP login successful")
 
-    # 3) Login first stage (TOTP validation)
-    login_response = client.totp_login(
-        mobile_number=MOBILE,
-        ucc=UCC,
-        totp=totp_value
-    )
+# Step 2: Validate MPIN → prepares trade token
+client.totp_validate(MPIN)
+print("MPIN validated")
 
-    if login_response.get("status") != "success":
-        print("❌ Login Failed:", login_response)
-        exit()
+# Step 3: Generate session token (trade token)
+session_res = client.session_token()
+print("Session token generated:", session_res)
 
-    print("✔ TOTP Login Successful")
-
-    # 4) MPIN validation
-    validation_response = client.totp_validate(mpin=MPIN)
-
-    if validation_response.get("status") != "success":
-        print("❌ MPIN Validation Failed:", validation_response)
-        exit()
-
-    print("✔ MPIN Validation Successful")
-    print("✔ Session Active")
-
-    # ---------- Fetch Live Quotes ----------
-    scrip_list = [
-        # {"exchange_segment": "nse_cm", "instrument_token": RELIANCE_NSE_TOKEN}
-        # For MCX gold use:
-        {"exchange_segment": "mcx_fo", "instrument_token": YOUR_GOLD_TOKEN}
-    ]
-
-    print("⏳ Fetching live quote...")
-
-    quotes_response = client.quotes(scrip_list=scrip_list)
-
-    print(json.dumps(quotes_response, indent=2))
-
-    if quotes_response.get("status") == "success" and quotes_response.get("data"):
-        item = quotes_response["data"][0]
-        print("\n====== LIVE QUOTE ======")
-        print("Symbol:", item.get("trading_symbol"))
-        print("Exchange:", item.get("exchange_segment"))
-        print("Token:", item.get("instrument_token"))
-        print("LTP:", item.get("last_traded_price"))
-        print("Time:", item.get("last_traded_time"))
-        print("========================\n")
-
-except Exception as e:
-    print("❌ ERROR:", e)
+# Step 4: Now call your protected API
+print("Calling trade report...")
+res = client.trade_report()
+print("Response:", res)
