@@ -76,12 +76,8 @@ WSGI_APPLICATION = 'trade_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'algo_trading',
-        'USER':"root",
-        "PASSWORD":"Root@1234",
-        "HOST":"89.116.32.17",
-        "PORT":3306
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
  

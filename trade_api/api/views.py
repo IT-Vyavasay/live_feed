@@ -1,11 +1,27 @@
-from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Security
-from .serializers import SecuritySerializer
+from .models import PendingOrder, CloseOrder, CurrentOrder, Configuration
+from .serializers import (
+    PendingOrderSerializer,
+    CloseOrderSerializer,
+    CurrentOrderSerializer,
+    ConfigurationSerializer,
+)
 
-class SecurityViewSet(viewsets.ModelViewSet):
-    queryset = Security.objects.all()
-    serializer_class = SecuritySerializer
+class PendingOrderViewSet(viewsets.ModelViewSet):
+    queryset = PendingOrder.objects.all()
+    serializer_class = PendingOrderSerializer
 
 
-# Create your views here.
+class CloseOrderViewSet(viewsets.ModelViewSet):
+    queryset = CloseOrder.objects.all()
+    serializer_class = CloseOrderSerializer
+
+
+class CurrentOrderViewSet(viewsets.ModelViewSet):
+    queryset = CurrentOrder.objects.all()
+    serializer_class = CurrentOrderSerializer
+
+
+class ConfigurationViewSet(viewsets.ModelViewSet):
+    queryset = Configuration.objects.all()
+    serializer_class = ConfigurationSerializer

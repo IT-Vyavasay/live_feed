@@ -1,38 +1,33 @@
-# models.py
 from django.db import models
 
-class Security(models.Model):
-    """
-    Model to store security information.
-    """
-    
-    # Choices for securityType field
-    # SECURITY_TYPES = [
-    #     ('EQUITY', 'Equity'),
-    #     ('FUTURE', 'Future'),
-    #     ('OPTION', 'Option'),
-    #     ('CURRENCY', 'Currency'),
-    #     ('COMMODITY', 'Commodity'),
-    #     ('BOND', 'Bond'),
-    #     # Add any other relevant security types as needed
-    # ]
-    
-    securityType = models.CharField(
-        max_length=10, 
-      )
-    
-    instrumentToken = models.CharField(
-        max_length=10, 
-       )
-    
-    exchangeSegment = models.CharField(
-        max_length=10,
-     )
-  
-   
+class BaseOrder(models.Model):
+    tradeId = models.CharField(max_length=100)
+    isShortSell = models.BooleanField(default=False)
+    openAt = models.DateTimeField(null=True, blank=True)
+    closeAt = models.DateTimeField(null=True, blank=True)
+    entryPrice = models.FloatField(null=True, blank=True)
+    exitPrice = models.FloatField(null=True, blank=True)
+    securityType = models.CharField(max_length=50)
+    instrumentToken = models.CharField(max_length=50)
+    exchangeSegment = models.CharField(max_length=50)
 
-    def __str__(self):
-        """
-        Returns a string representation of the model instance.
-        """
-        return f"{self.securityType} | Token: {self.instrumentToken} | Segment: {self.exchangeSegment}"
+    class Meta:
+        abstract = True
+
+
+class PendingOrder(BaseOrder):
+    pass
+
+
+class CloseOrder(BaseOrder):
+    pass
+
+
+class CurrentOrder(BaseOrder):
+    pass
+
+
+class Configuration(models.Model):
+    configurationId = models.CharField(max_length=100)
+    iTokens = models.JSONField(default=list)   # stores array
+    debounceTime = models.IntegerField(default=0)
