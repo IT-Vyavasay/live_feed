@@ -27,7 +27,6 @@ class CurrentOrder(BaseOrder):
     pass
 
 
-class Configuration(models.Model):
-    configurationId = models.CharField(max_length=100)
+class Configuration(models.Model): 
     iTokens = models.JSONField(default=list)   # stores array
     debounceTime = models.IntegerField(default=0)
