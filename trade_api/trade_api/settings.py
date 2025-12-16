@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-r2+3i%cm-+l0@e5++hhj33yjffc9zy=$d+(3=g!^)%^hj51k36
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "algoapi.smartidealab.com",
+    "89.116.32.17",
+    "localhost",
+    "127.0.0.1",
+]
+
 
 
 # Application definition
@@ -117,3 +123,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
