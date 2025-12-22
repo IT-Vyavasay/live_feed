@@ -1,3 +1,23 @@
+
+
+in my python project SOURCE => 1. Database table: table exist and i using sqllite database;
+
+i making algotrading setup which will work like below:
+
+1.  in backgronud web socket will run.  for web socket you can use SOURCE => 2. Web socket     file exit in my project 
+2. inst_tokens : you will get this constant form  Configuration table `s 1st record (id == 1);
+3. you will get 2 field in Configuration : iTokens(inst_tokens) and  debounceTime(example: 500)
+4. backgroung process will run in 2 part 
+        1. to trade pending order of table PendingOrder on right price 
+        2. to close CurrentOrder on right price .
+5. PendingOrder background process: web soket always on ; if any record in PendingOrder  start to check condition for
+6. How to process on  PendingOrder: if any 
+
+
+
+SOURCE:
+1. Database table:
+
 from django.db import models
 
 class BaseOrder(models.Model):
@@ -32,12 +52,8 @@ class Configuration(models.Model):
     iTokens = models.JSONField(default=list)   # stores array
     debounceTime = models.IntegerField(default=0)
 
-in my python project above rable exist and i unsing sqllite database;
+2. Web socket file
 
-i making algotrading setup which will work like below:
-
-1.  in backegroud web sockt will run 
-for web socket you can use below file
 import sys
 import os
 import time
@@ -95,12 +111,3 @@ try:
     client.subscribe(instrument_tokens=inst_tokens)
 except Exception as e:
     print("Exception while connection to socket->socket: %s\n" % e)
-
- 
-
-  
-2. inst_tokens : you will get this contentent form  Configuration table `s 1sta record (id == 1);
-3. you will get 2 field in Configuration : iTokens(inst_tokens) and  debounceTime(exa, 500)
-4. backgroung process will run in 2 part 1. to add trade pending order  PendingOrder 2. to close CurrentOrder.
-5.   PendingOrder background process: web soket always on ; if any record in PendingOrder  start to check condition for 
-
