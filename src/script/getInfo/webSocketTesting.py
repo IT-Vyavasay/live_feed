@@ -1,6 +1,10 @@
 import sys
 import os
-import time
+import pyotp
+
+secret = "XUQCQ6MTL2W3C7QWR6WV556QU4"
+
+totp = pyotp.TOTP(secret)
 
 # Add the parent directory (LIVE_FEED) to the system path for package discovery
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
@@ -15,9 +19,10 @@ print("client created", )
 
 
 
-# Step 1: Login TOTP → generates view_token
-totp_num = input("Enter totp: ")
-res= client.totp_login(mobile_number=MOBILE, ucc=UCC, totp=totp_num)
+otp = totp.now()
+print("otp",otp) 
+
+res= client.totp_login(mobile_number=MOBILE, ucc=UCC, totp=otp)
 print("TOTP login successful",res)
 
 # Step 2: Validate MPIN → prepares trade token
