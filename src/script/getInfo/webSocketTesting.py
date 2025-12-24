@@ -9,7 +9,7 @@ totp = pyotp.TOTP(secret)
 # Add the parent directory (LIVE_FEED) to the system path for package discovery
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from neo_api_client import NeoAPI
-from utils.constant import NEO_ACCESS_TOKEN, CONSUMER_KEY, CONSUMER_SECRET, DEV_ACCESS_TOKEN, API_TOKEN, MOBILE, NEO_FIN_KEY, SID, UCC, USER_PASSWORD, USER_ID, CLIENT_ID, CLIENT_PASSWORD, MPIN, TOTP, ENVIRONMENT, MCX_GOLD_TOKEN
+from utils.constant import NEO_ACCESS_TOKEN, MOBILE, NEO_FIN_KEY,   UCC,   MPIN
 
 print("initialize")
 client = NeoAPI(environment='prod', access_token=NEO_ACCESS_TOKEN, neo_fin_key=NEO_FIN_KEY, consumer_key=NEO_ACCESS_TOKEN)
