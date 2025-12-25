@@ -6,7 +6,7 @@ import django
 # ------------------ Django Setup ------------------
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "your_project.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "trade_api.settings")
 django.setup()
 
 # ------------------ Imports ------------------
