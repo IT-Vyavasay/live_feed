@@ -1,7 +1,7 @@
 # engine/debounce.py
 
 import time
-from utills.shared import LAST_PROCESSED_TIME
+from utils.shared import LAST_PROCESSED_TIME
 from api.models import Configuration
 
 def should_process(token):

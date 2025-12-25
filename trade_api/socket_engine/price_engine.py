@@ -1,6 +1,6 @@
 # engine/price_engine.py
 
-from utills.shared import PRICE_CACHE
+from utils.shared import PRICE_CACHE
 from strategy_engine.strategy_engine import on_price_tick
 
 def on_message(message):

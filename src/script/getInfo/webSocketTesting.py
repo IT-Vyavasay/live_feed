@@ -49,7 +49,6 @@ client.on_message = on_message  # called when message is received from websocket
 client.on_error = on_error  # called when any error or exception occurs in code or websocket
 client.on_close = on_close  # called when websocket connection is closed
 client.on_open = on_open  # called when websocket successfully connects
-
 # Take itoke from Configuration => iTokens
 inst_tokens = [{"instrument_token": "11536", "exchange_segment": "nse_cm"},
                {"instrument_token": "1594", "exchange_segment": "nse_cm"},
