@@ -9,6 +9,7 @@ def process_current_orders(token, ltp):
         status="OPEN"
     )
 
+# Logic to execute order
     for trade in trades:
         if trade.stopLoss and (
             (not trade.isShortSell and ltp <= trade.stopLoss) or
