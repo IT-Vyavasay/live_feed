@@ -1,20 +1,42 @@
 # engine/price_engine.py
 
 from utils.shared import PRICE_CACHE
+# socket_engine/price_engine.py
+
 from strategy_engine.strategy_engine import on_price_tick
 
 def on_message(message):
     try:
-        token = message.get("instrument_token")
-        ltp = float(message.get("last_traded_price"))
+        if not message:
+            return
 
-        PRICE_CACHE[token] = {
-            "ltp": ltp,
-            "timestamp": message.get("exchange_time")
-        }
+        msg_type = message.get("type")
 
-        # forward tick to strategy engine
-        on_price_tick(token, ltp)
+        # We only care about stock_feed
+        if msg_type != "stock_feed":
+            return
+
+        data_list = message.get("data", [])
+        if not isinstance(data_list, list):
+            return
+
+        for tick in data_list:
+            token = tick.get("tk")
+            ltp_str = tick.get("ltp")
+            print("tick===============>",ltp_str)
+
+            # Validate data
+            if not token or not ltp_str:
+                continue
+
+            try:
+                ltp = float(ltp_str)
+            except ValueError:
+                continue
+
+            # 🔥 Forward clean tick to Strategy Engine
+            on_price_tick(token, ltp)
 
     except Exception as e:
-        print("Price Engine Error:", e)
+        print("❌ Price Engine Error:", e)
+

@@ -21,6 +21,7 @@ def process_pending_orders(token, ltp):
 
 
 def open_trade(order, ltp):
+    print("Testt",order)
     CurrentOrder.objects.create(
         tradeId=order.tradeId,
         strategyCode=order.strategyCode,
@@ -33,8 +34,6 @@ def open_trade(order, ltp):
         securityType=order.securityType,
         instrumentToken=order.instrumentToken,
         exchangeSegment=order.exchangeSegment,
-        status="OPEN",
-        stopLoss=order.stopLoss ,
-        target=order.target
+        status="OPEN"
     )
     order.delete()
