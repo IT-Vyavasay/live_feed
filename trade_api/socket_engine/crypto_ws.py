@@ -4,7 +4,7 @@ import websockets
 from datetime import datetime
 
 from tick import Tick
-from strategy_engine import on_tick
+from strategy_engine.strategy_engine import on_tick
 
 BINANCE_WS = "wss://stream.binance.com:9443/ws/btcusdt@ticker"
 

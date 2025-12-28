@@ -5,6 +5,7 @@ from strategy_engine.pending_logic import process_pending_orders
 from strategy_engine.current_logic import process_current_orders
 
 def on_tick(tick):
+    print("Tick:", tick)
     if not should_process(tick.instrument_token):
         return
 
