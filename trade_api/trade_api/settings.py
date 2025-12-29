@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-r2+3i%cm-+l0@e5++hhj33yjffc9zy=$d+(3=g!^)%^hj51k36
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "www.smartidealab.com",
     "algoapi.smartidealab.com",
     "89.116.32.17",
     "localhost",

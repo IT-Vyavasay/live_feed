@@ -9,7 +9,7 @@ def process_pending_orders(token, ltp):
         instrumentToken=token,
         status__in=["CREATED", "WAITING"]
     )
-
+    print(f"Processing {len(orders)} pending orders for token {token} at LTP {ltp}")
     for order in orders:
         if order.strategyCode == "TEST_STRATEGY":
             open_trade(order, ltp)

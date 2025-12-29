@@ -5,7 +5,7 @@ import websockets
 from datetime import datetime
 
 from tick import Tick
-from strategy_engine.strategy_engine import on_tick
+from strategy_engine.strategy_engine import on_tick_async
 
 BINANCE_WS = "wss://stream.binance.com:9443/ws/btcusdt@ticker"
 
@@ -41,7 +41,7 @@ async def run_crypto_ws():
                         timestamp=datetime.fromtimestamp(data["E"] / 1000)
                     )
 
-                    on_tick(tick)
+                    await on_tick_async(tick)
 
         except Exception as e:
             print("❌ Crypto WS error:", e)
