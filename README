@@ -1,1 +1,4 @@
 start live project : pm2 start manage.py --name trade_api --interpreter python -- runserver 0.0.0.0:8001
+
+Clean cashes: find /var/my_work/live_feed -name "__pycache__" -exec rm -rf {} +
+find /var/my_work/live_feed -name "*.pyc" -delete

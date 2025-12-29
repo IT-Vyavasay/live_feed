@@ -1,6 +1,6 @@
 from datetime import datetime
 from tick import Tick
-from trade_api.strategy_engine.strategy_engine import on_tick
+from strategy_engine.strategy_engine import on_tick
 
 def on_message(message):
     if message.get("type") != "stock_feed":

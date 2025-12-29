@@ -21,7 +21,7 @@ django.setup()
 # --------------------------------------------------
 from neo_api_client import NeoAPI
 from utils.constant import NEO_ACCESS_TOKEN, MOBILE, NEO_FIN_KEY, UCC, MPIN
-from trade_api.socket_engine.equity_ws import on_message as price_engine_on_message
+from socket_engine.equity_ws import on_message as price_engine_on_message
 from api.models import Configuration
 
 # --------------------------------------------------
