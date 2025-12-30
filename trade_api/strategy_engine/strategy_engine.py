@@ -6,13 +6,13 @@ from strategy_engine.current_logic import process_current_orders
 from asgiref.sync import sync_to_async
 
 def on_tick_sync(tick):
-    print("Tick123:", tick.instrument_token)
+    # print("Tick123:", tick.instrument_token)
 
     if not should_process(tick.instrument_token):
-        print("step0")
+   
         return
 
-    print("step1")
+    print("step1",tick)
     process_pending_orders(tick.instrument_token, tick.ltp)
     process_current_orders(tick.instrument_token, tick.ltp)
 
