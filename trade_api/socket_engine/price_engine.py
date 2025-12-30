@@ -23,7 +23,7 @@ def on_message(message):
         for tick in data_list:
             token = tick.get("tk")
             ltp_str = tick.get("ltp")
-            print("tick===============>",ltp_str)
+            print("tick===============>",tick)
 
             # Validate data
             if not token or not ltp_str:

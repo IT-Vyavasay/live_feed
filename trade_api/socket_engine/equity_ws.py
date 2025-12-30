@@ -1,6 +1,6 @@
 from datetime import datetime
 from tick import Tick
-from strategy_engine.strategy_engine import on_tick
+from strategy_engine.strategy_engine import on_tick_sync
 
 def on_message(message):
     if message.get("type") != "stock_feed":
@@ -26,4 +26,4 @@ def on_message(message):
             timestamp=datetime.now()
         )
 
-        on_tick(tick)
+        on_tick_sync(tick)
