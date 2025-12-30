@@ -4,15 +4,18 @@ from utils.debounce import should_process
 from strategy_engine.pending_logic import process_pending_orders
 from strategy_engine.current_logic import process_current_orders
 from asgiref.sync import sync_to_async
-
+from api.models import PendingOrder, CurrentOrder
 def on_tick_sync(tick):
+    orders = PendingOrder.objects.all()
     # print("Tick123:", tick.instrument_token)
-
+    for order in orders:
+        print(order.tradeId)
     if not should_process(tick.instrument_token):
+        print("stopped", )
    
         return
 
-    print("step1",tick)
+    print("step1", )
     process_pending_orders(tick.instrument_token, tick.ltp)
     process_current_orders(tick.instrument_token, tick.ltp)
 
