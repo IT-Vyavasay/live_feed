@@ -11,6 +11,7 @@ def process_current_orders(token, ltp):
 
 # Logic to execute order
     for trade in trades:
+        print(f"Current trade data: ltp{ltp}; stopLoss{trade.stopLoss}; tradeTarget{trade.target}")
         if trade.stopLoss and (
             (not trade.isShortSell and ltp <= trade.stopLoss) or
             (trade.isShortSell and ltp >= trade.stopLoss)

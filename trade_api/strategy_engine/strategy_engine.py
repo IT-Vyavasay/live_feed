@@ -8,6 +8,7 @@ from api.models import PendingOrder, CurrentOrder
 def on_tick_sync(tick):
     orders = PendingOrder.objects.all()
     # print("Tick123:", tick.instrument_token)
+    # print("tick================>", tick)
     for order in orders:
         print(order.tradeId)
     if not should_process(tick.instrument_token):
@@ -15,7 +16,6 @@ def on_tick_sync(tick):
    
         return
 
-    print("step1", )
     process_pending_orders(tick.instrument_token, tick.ltp)
     process_current_orders(tick.instrument_token, tick.ltp)
 
