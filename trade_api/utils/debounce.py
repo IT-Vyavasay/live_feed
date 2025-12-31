@@ -11,9 +11,8 @@ def should_process(token):
     if debounce_sec == 0:
         return True  # every tick
 
-    now = time.time()
-    last = LAST_PROCESSED_TIME.get(token, 0)
-
+    now = int(time.time() * 1000)
+    last = LAST_PROCESSED_TIME.get(token, 0) 
     if now - last >= debounce_sec:
         LAST_PROCESSED_TIME[token] = now
         return True
