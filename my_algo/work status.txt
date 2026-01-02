@@ -1,0 +1,7 @@
+Intigrate api:
+get-catogory
+
+
+
+kept in pending
+edit remove category
