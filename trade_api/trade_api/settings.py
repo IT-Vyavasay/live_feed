@@ -47,8 +47,21 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'drf_spectacular',
+    'channels'
     
 ]
+
+ASGI_APPLICATION = "trade_api.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',

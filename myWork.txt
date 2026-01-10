@@ -111,3 +111,8 @@ try:
     client.subscribe(instrument_tokens=inst_tokens)
 except Exception as e:
     print("Exception while connection to socket->socket: %s\n" % e)
+
+
+
+web socket work
+https://chatgpt.com/share/695f3496-94ac-800d-b5ea-9a28825e5d0b

@@ -2,13 +2,20 @@
 
 from django.utils import timezone
 from api.models import PendingOrder, CurrentOrder
-
+from utils.ws import send_ws_event
 
 def process_pending_orders(token, ltp):
     orders = PendingOrder.objects.filter(
         instrumentToken=token,
         status__in=["CREATED", "WAITING"]
     )
+    # send_ws_event(
+    #         group="trade_updates",
+    #         event_type="trade_event",
+    #         data={
+    #             "event": "TRADE_OPENED"
+    #         },
+    #     )
     print(f"Processing {len(orders)} pending orders for token {token} at LTP {ltp}")
     for order in orders:
         if order.strategyCode == "TEST_STRATEGY":

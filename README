@@ -5,3 +5,6 @@ find /var/my_work/live_feed -name "*.pyc" -delete
 
 # API Documentation URL:
 https://algoapi.smartidealab.com/api/docs/#/close-order/close_order_list
+
+# web socket link
+wss://algoapi.smartidealab.com/ws/trades/
