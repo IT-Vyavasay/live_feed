@@ -98,21 +98,22 @@ const UserList = () => {
                 a: 1
             })
 
-            const getUserList = await fetchApi("current-order", userData, "GET")
+            const getUserList = await fetchApi("close-order", userData, "GET")
+            console.log("getUserList", getUserList)
             if (getUserList.statusCode == 200) {
                 setLoader(false)
-                setTotalPage(getUserList.data.total)
-                setUserLists(getUserList.data.data);
+                setTotalPage(getUserList.data.length)
+                setUserLists(getUserList.data);
                 setPageLoader(false)
                 setSearchLdr(false)
             } else {
                 setLoader(false)
                 setSearchLdr(false)
-                if (getUserList.data.message == "Unauthorized") {
-                    setAuthTkn(getUserList.data.message)
+                if (getUserList?.message == "Unauthorized") {
+                    setAuthTkn(getUserList?.message)
                 } else {
                     setPageLoader(false)
-                    toast.error(getUserList.data.message)
+                    toast.error(getUserList?.message)
                 }
             }
         }
