@@ -41,7 +41,6 @@ export const authOptions = {
             },
             body: JSON.stringify({ email, password })
           })
-          console.log('res', res)
 
           const data = await res.json()
 
@@ -50,6 +49,7 @@ export const authOptions = {
           }
 
           if (res.status === 200) {
+            console.log('res=>>>>>>>>>>', res.status, data)
             /*
              * Please unset all the sensitive information of the user either from API response or before returning
              * user data below. Below return statement will set the user object in the token and the same is set in

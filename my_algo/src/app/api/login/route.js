@@ -7,10 +7,12 @@ import { users } from './users'
 export async function POST(req) {
   // Vars
   const { email, password } = await req.json()
-  const user = users.find(u => u.email === email && u.password === password)
-  let response = null
+  const user = users[0] //.find(u => u.email === email && u.password === password)
 
+  let response = null
+  console.log(user)
   if (user) {
+    console.log("user")
     const { password: _, ...filteredUserData } = user
 
     response = {
