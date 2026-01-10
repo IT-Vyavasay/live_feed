@@ -12,11 +12,11 @@ export default function Dashboard() {
     const [loader, setLoader] = useState(false)
     const [dashData, setDashData] = useState({})
     const getDashboardData = async () => {
+        setPageLoader(false)
         if (!loader) {
-            setLoader(true)
+            setLoader(false)
             const stakingdata = JSON.stringify({ a: 0 })
             const response = await fetchApi("dashboard", stakingdata, "GET")
-            setPageLoader(false)
             if (response.statusCode == 200) {
                 setPageLoader(false)
                 setDashData(response.data.data)

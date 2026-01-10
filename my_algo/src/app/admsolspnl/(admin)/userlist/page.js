@@ -86,18 +86,19 @@ const UserList = () => {
         if (!loader) {
             setLoader(true)
             const userData = JSON.stringify({
-                page: page,
-                order: order,
-                orderColumn: orderClm,
-                startDate: st,
-                endDate: ed,
-                status: status,
-                search: search,
-                verify: verify,
-                siteType: siteType
+                // page: page,
+                // order: order,
+                // orderColumn: orderClm,
+                // startDate: st,
+                // endDate: ed,
+                // status: status,
+                // search: search,
+                // verify: verify,
+                // siteType: siteType
+                a: 1
             })
 
-            const getUserList = await fetchApi("user/userlist", userData, "GET")
+            const getUserList = await fetchApi("current-order", userData, "GET")
             if (getUserList.statusCode == 200) {
                 setLoader(false)
                 setTotalPage(getUserList.data.total)

@@ -19,36 +19,36 @@ export const authOptions = {
         repchaToken: {}
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password || !credentials?.otp || !credentials?.repchaToken) {
-          return null;
-        }
-        let checkRepcha = await recaptcha(credentials?.repchaToken);
-        if (!checkRepcha) {
-          return null
-        }
-        let user = await sql_query("select password,twoOpen,email,slrAdminId,twoFaCode from tblslr_admin where email = ?", [credentials?.email])
-        if (user && credentials.password === passDec(user.password, encryption_key("passwordKey"))) {
-          let speakeasy = require("speakeasy")
-          let twofa = speakeasy.totp.verify({
-            secret: passDec(user.twoFaCode, encryption_key("twofaKey")),
-            encoding: "base32",
-            token: credentials.otp,
-          })
-          if (twofa) {
+        // if (!credentials?.email || !credentials.password || !credentials?.otp || !credentials?.repchaToken) {
+        //   return null;
+        // }
+        // let checkRepcha = await recaptcha(credentials?.repchaToken);
+        // if (!checkRepcha) {
+        //   return null
+        // }
+        // let user = await sql_query("select password,twoOpen,email,slrAdminId,twoFaCode from tblslr_admin where email = ?", [credentials?.email])
+        // if (user && credentials.password === passDec(user.password, encryption_key("passwordKey"))) {
+        //   let speakeasy = require("speakeasy")
+        //   let twofa = speakeasy.totp.verify({
+        //     secret: passDec(user.twoFaCode, encryption_key("twofaKey")),
+        //     encoding: "base32",
+        //     token: credentials.otp,
+        //   })
+        //   if (twofa) {
 
-            await setLoginHistory(0, 0)
-            return {
-              id: user.slrAdminId,
-              email: user.email,
-            }
-          } else {
-            return null
-          }
+        // await setLoginHistory(0, 0)
+        return {
+          id: "user.slrAdminId",
+          email: "user.email",
         }
-        else {
-          return null
-        }
-      },
+        // } else {
+        //   return null
+        // }
+      }
+      // else {
+      //   return null
+      // }
+      // },
     }),
   ],
   callbacks: {

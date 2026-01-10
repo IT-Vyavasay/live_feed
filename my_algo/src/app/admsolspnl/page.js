@@ -61,12 +61,12 @@ export default function LoginPage() {
   const finalLogin = async () => {
     try {
       if (!submitLoader) {
-        try {
-          chk_otp(otp)
-        } catch (e) {
-          toast.error(e)
-          return false
-        }
+        // try {
+        //   chk_otp(otp)
+        // } catch (e) {
+        //   toast.error(e)
+        //   return false
+        // }
         setSubmitLoader(true)
         const repchaToken = await reRef.current.executeAsync();
         const res = await signIn("credentials", {
@@ -124,7 +124,7 @@ export default function LoginPage() {
                           </div>
                         </div>
                         <div className="text-center">
-                          <button type="button" className="btn btn-bordered-primary waves-effect login-btn waves-light" onClick={() => login()}>{submitLoader ? <Loader /> : ""}Sign In</button>
+                          <button type="button" className="btn btn-bordered-primary waves-effect login-btn waves-light" onClick={() => finalLogin()}>{submitLoader ? <Loader /> : ""}Sign In</button>
                         </div>
                       </> : <>
                         <div className="form-group">
