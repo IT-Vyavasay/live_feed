@@ -24,6 +24,10 @@ const nextConfig = {
   images: {
     domains: ["localhost"],
 
+  },
+  "baseUrl": ".",
+  "paths": {
+    "@/*": ["src/*"]
   }
 }
 
