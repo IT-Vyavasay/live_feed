@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import Flatpickr from "react-flatpickr"
 import "flatpickr/dist/flatpickr.css"
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import Table_Loader from '../../../../components/include/TableLoader'
 import { chk_password, convert_date, validate_string } from '../../../../utils/common'
 import { fetchApi } from '../../../../utils/frondend'
+import { useTradeWS } from '../../../../hook/useSocket'
 import Loader from '../../../../components/include/Loader'
 import { useAuthContext } from '../../../../context/auth'
 import Modal from 'react-bootstrap/Modal';
@@ -140,6 +141,14 @@ const UserList = () => {
             sortData(orderClm, order)
         }, 500)
     }, [])
+
+    useTradeWS((data) => {
+        console.log('TRADE EVENT:', data);
+    });
+
+
+
+
 
     const serachList = () => {
         if (!dateRange) {

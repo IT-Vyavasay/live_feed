@@ -36,6 +36,7 @@
     "react-paginate": "^8.2.0",
     "react-select": "^5.7.5",
     "serverless-mysql": "^1.5.5",
+    "socket.io-client": "^4.8.3",
     "speakeasy": "^2.0.0",
     "sweetalert2": "^11.12.4"
   },
