@@ -11,6 +11,8 @@ import CommonTable from "../../include/CommonTable";
 import CommonHeader from "../../include/CommonHeader";
 import ChangePasswordModal from "./ChangePasswordModal";
 import dataListContainer from "./dataListContainer";
+const listType = "currentOrderList";
+
 const CurrentOrderList = () => {
   const {
     show,
@@ -52,15 +54,24 @@ const CurrentOrderList = () => {
     statusOptions,
     siteTypeOption,
     verify_Options,
+    verify,
+    setVerify,
+    search,
+    setSearch,
+    GetUserList,
+    setAuthTkn,
     serachList,
-  } = dataListContainer();
+    pageTitle,
+  } = dataListContainer({
+    listType,
+  });
 
   return (
     <div className="content-body btn-page">
       <Toaster position="top-right" reverseOrder={false} />
       <div className="container-fluid p-4">
         <div className="row">
-          <h3 className="page-title-main">Manage User</h3>
+          <h3 className="page-title-main">{pageTitle}</h3>
 
           <div className="col-lg-12">
             <div className="card mt-4 mb-4">

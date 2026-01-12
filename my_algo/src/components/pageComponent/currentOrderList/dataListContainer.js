@@ -7,9 +7,12 @@ moment.suppressDeprecationWarnings = true;
 import { fetchApi, sortData } from "../../../utils/frondend";
 import { useAuthContext } from "../../../context/auth";
 import { useTradeWS } from "../../../hook/useSocket";
+import recordListDescription from "../../../description/recordListDescription";
 
-const dataListContainer = () => {
+
+const dataListContainer = ({ listType }) => {
     const { setAuthTkn, setPageLoader } = useAuthContext();
+    const { recordListConfig } = recordListDescription()
     const [show, setShow] = useState(false);
     const [page, setPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
@@ -92,7 +95,7 @@ const dataListContainer = () => {
                 siteType: siteType,
             });
 
-            const getUserList = await fetchApi("close-order", userData, "GET");
+            const getUserList = await fetchApi(recordListConfig[listType].apiEndpoint, userData, "GET");
             if (getUserList.statusCode == 200) {
                 setLoader(false);
                 setTotalPage(getUserList.data.length);
@@ -119,7 +122,33 @@ const dataListContainer = () => {
     }, []);
 
     useTradeWS((data) => {
+        /*
+        
+        {
+    "strategyCode": "TEST_STRATEGY",
+    "tradeId": "BTC-PEND-0001",
+    "event": "TRADE_OPENED"
+}
+        */
         console.log("TRADE EVENT:", data);
+
+        const tradeOpenInPendingOrderList = data.event === "TRADE_OPENED" && listType === "pendingOrderList";
+        const tradeCloseInCurrentOrderList = data.event === "TRADE_CLOSED" && listType === "currentOrderList";
+        const tradeCloseInCloseOrderList = data.event === "TRADE_CLOSED" && listType === "closeOrderList";
+
+        if (tradeOpenInPendingOrderList && tradeCloseInCurrentOrderList) {
+            setUserLists((prevLists) =>
+                prevLists.filter(
+                    (item) => item.tradeId !== data.tradeId
+                )
+            );
+
+        } else if (tradeCloseInCloseOrderList) {
+            const updatedList = [...userlists, data];
+            setUserLists(updatedList);
+        }
+
+
     });
 
     const serachList = () => {
@@ -187,8 +216,19 @@ const dataListContainer = () => {
         statusOptions,
         siteTypeOption,
         verify_Options,
+        verify,
+        setVerify,
         serachList,
+        setVerify,
+        search,
+        setSearch,
+        GetUserList,
+        setAuthTkn,
+        pageTitle: recordListConfig[listType].title
+
     }
 }
 
 export default dataListContainer
+
+
