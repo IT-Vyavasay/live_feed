@@ -5,15 +5,13 @@ const moment = require("moment");
 moment.suppressDeprecationWarnings = true;
 import Table_Loader from "../../include/TableLoader";
 import { convert_date } from "../../../utils/common";
-import { sortData } from "../../../utils/frondend";
 import Loader from "../../include/Loader";
 import CommonTable from "../../include/CommonTable";
 import CommonHeader from "../../include/CommonHeader";
 import ChangePasswordModal from "./ChangePasswordModal";
 import dataListContainer from "./dataListContainer";
-const listType = "currentOrderList";
 
-const CurrentOrderList = () => {
+const CurrentOrderList = ({ listType }) => {
   const {
     show,
     setShow,
@@ -22,8 +20,6 @@ const CurrentOrderList = () => {
     totalPage,
     order,
     setOrder,
-    orderClm,
-    setOrderClm,
     loader,
     searchLdr,
     userlists,
@@ -62,6 +58,7 @@ const CurrentOrderList = () => {
     setAuthTkn,
     serachList,
     pageTitle,
+    handleSort,
   } = dataListContainer({
     listType,
   });
@@ -125,7 +122,7 @@ const CurrentOrderList = () => {
                       className: "text-center cursor-pointer text-nowrap",
                       sortable: true,
                       sortIndex: 0,
-                      onSort: () => sortData(0, order == 0 ? 1 : 0),
+                      onSort: () => handleSort(0),
                     },
                     {
                       label: "User Name",
@@ -133,7 +130,7 @@ const CurrentOrderList = () => {
                       className: "text-center cursor-pointer text-nowrap",
                       sortable: true,
                       sortIndex: 1,
-                      onSort: () => sortData(1, order == 0 ? 1 : 0),
+                      onSort: () => handleSort(1),
                     },
                     {
                       label: "Email",
@@ -141,7 +138,7 @@ const CurrentOrderList = () => {
                       className: "text-center cursor-pointer text-nowrap",
                       sortable: true,
                       sortIndex: 2,
-                      onSort: () => sortData(2, order == 0 ? 1 : 0),
+                      onSort: () => handleSort(2),
                     },
                     {
                       label: "Status",

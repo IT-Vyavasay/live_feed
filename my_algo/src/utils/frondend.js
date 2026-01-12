@@ -40,7 +40,7 @@ export async function fetchApi_with_upload(url, data, method = "POST") {
 }
 
 
-export const sortData = (column, sort) => {
+export const sortData = ({ column, sort, setOrder = () => { }, setOrderClm = () => { } }) => {
   setOrder(sort);
   setOrderClm(column);
   if (sort == 1) {

@@ -176,6 +176,16 @@ const dataListContainer = ({ listType }) => {
             ).getTime() / 1000
             : 0;
     }, [page, order, orderClm]);
+
+
+    const handleSort = (column = 0) => {
+        sortData({
+            column: column,
+            sort: order == 0 ? 1 : 0,
+            setOrder,
+            setOrderClm,
+        })
+    }
     return {
         show,
         setShow,
@@ -224,7 +234,8 @@ const dataListContainer = ({ listType }) => {
         setSearch,
         GetUserList,
         setAuthTkn,
-        pageTitle: recordListConfig[listType].title
+        pageTitle: recordListConfig[listType].title,
+        handleSort
 
     }
 }
