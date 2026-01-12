@@ -38,3 +38,20 @@ export async function fetchApi_with_upload(url, data, method = "POST") {
     return { statusCode: 400, data: { message: 'Internal server error' } }
   }
 }
+
+
+export const sortData = (column, sort) => {
+  setOrder(sort);
+  setOrderClm(column);
+  if (sort == 1) {
+    $(".fa-sort-down").removeClass("sort-enable");
+    $(".fa-sort-up").removeClass("sort-enable");
+    $(".fa-sort-up").removeClass("sort-desable");
+    $(".fa-sort-down").removeClass("sort-desable");
+    $(".asc-" + column).addClass("sort-enable");
+  } else {
+    $(".fa-sort-down").removeClass("sort-enable");
+    $(".fa-sort-up").removeClass("sort-enable");
+    $(".desc-" + column).addClass("sort-enable");
+  }
+};
