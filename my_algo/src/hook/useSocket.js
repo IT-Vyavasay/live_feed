@@ -130,7 +130,7 @@ const useSocket = () => {
 
 const WS_URL = 'wss://algoapi.smartidealab.com/ws/trades/';
 
-export function useTradeWS(onMessage) {
+export function useTradeWS(onMessage, dependencies = []) {
     const wsRef = useRef(null);
 
     useEffect(() => {
@@ -162,7 +162,7 @@ export function useTradeWS(onMessage) {
         return () => {
             ws.close();
         };
-    }, []);
+    }, [...dependencies]);
 
     return wsRef;
 }

@@ -130,27 +130,26 @@ const dataListContainer = ({ listType }) => {
     "event": "TRADE_OPENED"
 }
         */
+        console.log("TRADE EVENT:", data);
 
         const tradeOpenInPendingOrderList = data.event === "TRADE_OPENED" && listType === "pendingOrderList";
         const tradeCloseInCurrentOrderList = data.event === "TRADE_CLOSED" && listType === "currentOrderList";
-        const tradeOpenInCurrentOrderList = data.event === "TRADE_OPENED" && listType === "currentOrderList";
         const tradeCloseInCloseOrderList = data.event === "TRADE_CLOSED" && listType === "closeOrderList";
-        console.log("TRADE EVENT:", data);
 
-        if (tradeOpenInPendingOrderList || tradeCloseInCurrentOrderList) {
+        if (tradeOpenInPendingOrderList && tradeCloseInCurrentOrderList) {
             setUserLists((prevLists) =>
                 prevLists.filter(
                     (item) => item.tradeId !== data.tradeId
                 )
             );
 
-        } else if (tradeCloseInCloseOrderList || tradeOpenInCurrentOrderList) {
+        } else if (tradeCloseInCloseOrderList) {
             const updatedList = [...userlists, data];
             setUserLists(updatedList);
         }
 
 
-    }, [userlists]);
+    });
 
     const serachList = () => {
         if (!dateRange) {

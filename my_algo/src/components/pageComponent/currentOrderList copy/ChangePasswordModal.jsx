@@ -181,38 +181,6 @@ const ChangePasswordModal = ({
     setShowPwd({ ...showPwd, [field]: !showPwd[field] });
   };
 
-  const passwordFormConfig = {
-    initialValues: {
-      newPassword: "",
-      confirmPassword: "",
-      admPassword: "",
-    },
-
-    submitApi: "user/change-password",
-
-    fields: [
-      {
-        name: "newPassword",
-        label: "New Password",
-        type: "password",
-        required: true,
-      },
-      {
-        name: "confirmPassword",
-        label: "Confirm Password",
-        type: "password",
-        validate: (v, all) =>
-          v !== all.newPassword && "Password does not match",
-      },
-      {
-        name: "admPassword",
-        label: "Admin Password",
-        type: "password",
-        required: true,
-      },
-    ],
-  };
-
   const handleSubmit = () => {
     if (!loading) {
       try {
@@ -264,6 +232,78 @@ const ChangePasswordModal = ({
       });
     }
   };
+
+  const renderPasswordStrength = (val) => {
+    const v = val || "";
+    const rules = [
+      { regex: /[0-9]/, label: "1 Number" },
+      { regex: /[A-Z]/, label: "1 Uppercase" },
+      { regex: /[a-z]/, label: "1 Lowercase" },
+      {
+        regex: /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/,
+        label: "1 Special Character",
+      },
+      {
+        test: (s) => s.length >= 8 && s.length <= 32,
+        label: "8–32 Characters",
+      },
+    ];
+
+    return (
+      <div className="password-validation-span mt-2">
+        {rules.map((rule, i) => {
+          const isMatch = rule.regex ? v.match(rule.regex) : rule.test(v);
+          return (
+            <span
+              key={i}
+              className={`d-block ${isMatch ? "text-success" : "text-danger"}`}
+            >
+              <i
+                className={`fa fa-${isMatch ? "check-circle" : "times-circle"}`}
+              ></i>{" "}
+              {rule.label}
+            </span>
+          );
+        })}
+      </div>
+    );
+  };
+
+  // Helper for strict validation blocking submit
+  const validatePasswordStrict = (val) => {
+    const strongRegex = new RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,32})"
+    );
+    return strongRegex.test(val) ? null : "Password does not meet requirements";
+  };
+
+  const passwordFormConfig = [
+    {
+      name: "newPassword",
+      label: "New Password",
+      type: "password",
+      placeholder: "New password",
+      validateOnChange: true, // triggers re-render for strength meter
+      validate: validatePasswordStrict,
+      renderHelper: renderPasswordStrength, // The visual list
+    },
+    {
+      name: "confirmPassword",
+      label: "Confirm Password",
+      type: "password",
+      placeholder: "Confirm password",
+      validate: (val, formData) =>
+        val !== formData.newPassword ? "Passwords do not match" : null,
+    },
+    {
+      name: "admPassword",
+      label: "Admin Password",
+      type: "password",
+      placeholder: "Admin password",
+      required: true,
+    },
+  ];
+
   return (
     <CommonModal
       show={show}
@@ -286,7 +326,13 @@ const ChangePasswordModal = ({
         },
       ]}
     >
-      <CommonForm {...passwordFormConfig} />
+      <CommonForm
+        formConfig={passwordFormConfig}
+        initialValues={{}}
+        extraPayload={{ userId: 1 }}
+        apiEndpoint="user/change-password"
+        submitBtnText="Update Password"
+      />
     </CommonModal>
   );
 };

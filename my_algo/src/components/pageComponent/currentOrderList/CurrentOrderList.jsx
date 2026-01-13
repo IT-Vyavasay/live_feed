@@ -8,8 +8,8 @@ import { convert_date } from "../../../utils/common";
 import Loader from "../../include/Loader";
 import CommonTable from "../../include/CommonTable";
 import CommonHeader from "../../include/CommonHeader";
-import ChangePasswordModal from "./ChangePasswordModal";
 import dataListContainer from "./dataListContainer";
+import AddTradeModel from "./AddTradeModel";
 
 const CurrentOrderList = ({ listType }) => {
   const {
@@ -191,7 +191,7 @@ const CurrentOrderList = ({ listType }) => {
           </div>
         </div>
       </div>
-      <ChangePasswordModal
+      <AddTradeModel
         show={show}
         setShow={setShow}
         showPwd={showPwd}
