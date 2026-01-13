@@ -17,7 +17,7 @@ const AddTradeModel = ({
   setAuthTkn,
 }) => {
   const [fields, setFields] = useState({
-    tradeId: "test123",
+    tradeId: "test_ro_0",
     strategyCode: "TEST_STRATEGY", // Default selected
     isShortSell: false,
     qty: 1,

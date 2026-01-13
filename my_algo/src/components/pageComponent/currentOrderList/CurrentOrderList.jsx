@@ -104,7 +104,9 @@ const CurrentOrderList = ({ listType }) => {
                 ]}
                 searchValue={search}
                 onSearchChange={setSearch}
-                onSearchClick={serachList}
+                onSearchClick={() =>
+                  handleShow({ user_id: 1, email: "row.email" })
+                } //{serachList}
                 loading={searchLdr}
                 LoaderComponent={Loader}
               />
