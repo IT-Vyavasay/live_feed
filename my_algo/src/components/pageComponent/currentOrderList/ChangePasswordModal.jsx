@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { fetchApi } from "../../../utils/frondend";
 import { chk_password, validate_string } from "../../../utils/common";
 import Loader from "../../include/Loader";
+import CommonForm from "../../include/CommonForm";
 
 const ChangePasswordModal = ({
   show,
@@ -179,6 +180,39 @@ const ChangePasswordModal = ({
   const ClickOnEye = (field) => {
     setShowPwd({ ...showPwd, [field]: !showPwd[field] });
   };
+
+  const passwordFormConfig = {
+    initialValues: {
+      newPassword: "",
+      confirmPassword: "",
+      admPassword: "",
+    },
+
+    submitApi: "user/change-password",
+
+    fields: [
+      {
+        name: "newPassword",
+        label: "New Password",
+        type: "password",
+        required: true,
+      },
+      {
+        name: "confirmPassword",
+        label: "Confirm Password",
+        type: "password",
+        validate: (v, all) =>
+          v !== all.newPassword && "Password does not match",
+      },
+      {
+        name: "admPassword",
+        label: "Admin Password",
+        type: "password",
+        required: true,
+      },
+    ],
+  };
+
   const handleSubmit = () => {
     if (!loading) {
       try {
@@ -252,113 +286,7 @@ const ChangePasswordModal = ({
         },
       ]}
     >
-      {/* New Password */}
-      <div className="mb-2">
-        <label className="col-form-label">New Password</label>
-
-        <div className="input-group">
-          <input
-            type={showPwd.newPassword ? "text" : "password"}
-            value={fields.newPassword}
-            placeholder="New password"
-            className="form-control"
-            onChange={(e) =>
-              setFields({ ...fields, newPassword: e.target.value })
-            }
-            onKeyUp={(e) => {
-              checkPass(e.target.value);
-              e.keyCode === 13 && handleSubmit();
-            }}
-          />
-
-          <div className="input-group-append curser-pointer">
-            <div
-              className="input-group-text"
-              onClick={() => ClickOnEye("newPassword")}
-            >
-              <i
-                className={`mdi mdi-eye${
-                  showPwd.newPassword ? "" : "-off"
-                } fs-4`}
-              ></i>
-            </div>
-          </div>
-        </div>
-
-        <span className="password-validation-span">
-          <span>
-            <i className="fa fa-check-circle"></i> 1 Number
-          </span>
-          <span>
-            <i className="fa fa-check-circle"></i> 1 Uppercase
-          </span>
-          <span>
-            <i className="fa fa-check-circle"></i> 1 Lowercase
-          </span>
-          <span>
-            <i className="fa fa-check-circle"></i> 1 Special Character
-          </span>
-          <span>
-            <i className="fa fa-check-circle"></i> 8–32 Characters
-          </span>
-        </span>
-      </div>
-
-      {/* Confirm Password */}
-      <div className="mb-2">
-        <label className="col-form-label">Confirm Password</label>
-
-        <div className="input-group">
-          <input
-            type={showPwd.confirmPassword ? "text" : "password"}
-            value={fields.confirmPassword}
-            placeholder="Confirm password"
-            className="form-control"
-            onChange={(e) =>
-              setFields({ ...fields, confirmPassword: e.target.value })
-            }
-            onKeyUp={(e) => e.keyCode === 13 && handleSubmit()}
-          />
-
-          <div
-            className="input-group-text"
-            onClick={() => ClickOnEye("confirmPassword")}
-          >
-            <i
-              className={`mdi mdi-eye${
-                showPwd.confirmPassword ? "" : "-off"
-              } fs-4`}
-            ></i>
-          </div>
-        </div>
-      </div>
-
-      {/* Admin Password */}
-      <div className="mb-2">
-        <label className="col-form-label">Admin Password</label>
-
-        <div className="input-group">
-          <input
-            type={showPwd.admPassword ? "text" : "password"}
-            value={fields.admPassword}
-            placeholder="Admin password"
-            className="form-control"
-            onChange={(e) =>
-              setFields({ ...fields, admPassword: e.target.value })
-            }
-            onKeyUp={(e) => e.keyCode === 13 && handleSubmit()}
-          />
-
-          <div
-            className="input-group-text"
-            onClick={() => ClickOnEye("admPassword")}
-          >
-            <i
-              className={`mdi mdi-eye${showPwd.admPassword ? "" : "-off"} fs-4`}
-            ></i>
-          </div>
-        </div>
-      </div>
+      <CommonForm {...passwordFormConfig} />
     </CommonModal>
   );
 };

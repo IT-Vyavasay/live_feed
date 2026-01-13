@@ -15,15 +15,7 @@ const ChangePasswordModal = ({
   setLoading,
   user_id,
   user_email,
-  GetUserList,
   setAuthTkn,
-  activationLdr,
-  setActivationLdr,
-  varificationLdr,
-  setVarificationLdr,
-  twoFaLdr,
-  setTwoFaLdr,
-  setListindex,
 }) => {
   const [fields, setFields] = useState({
     admPassword: "",
@@ -38,112 +30,6 @@ const ChangePasswordModal = ({
       newPassword: "",
       confirmPassword: "",
     });
-  };
-  const updateStatus = async (status, userId, email, i) => {
-    if (!activationLdr) {
-      await Swal.fire({
-        title: "Are you sure?",
-        text: `You want to ${status == 0 ? "active" : "deactive"} ${email}.`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#448ec5",
-        confirmButtonText: "Yes",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          setActivationLdr(true);
-          setListindex(i);
-          const ActivationData = JSON.stringify({
-            userId: userId,
-            status: status == 1 ? 0 : 1,
-          });
-          const change_status = await fetchApi(
-            "user/change-status",
-            ActivationData
-          );
-          setActivationLdr(false);
-          setListindex(-1);
-          if (change_status.statusCode == 200) {
-            toast.success(change_status.data.message);
-            GetUserList();
-          } else {
-            if (change_status.data.message == "Unauthorized") {
-              setAuthTkn(change_status.data.message);
-            } else {
-              toast.error(change_status?.data?.message);
-            }
-          }
-        }
-      });
-    }
-  };
-  const updateVerification = async (userId, email, i) => {
-    if (!varificationLdr) {
-      Swal.fire({
-        title: "Are you sure?",
-        text: `You want to verify ${email}.`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#448ec5",
-        confirmButtonText: "Yes",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          setVarificationLdr(true);
-          setListindex(i);
-          const ActivationData = JSON.stringify({
-            userId: userId,
-          });
-          const change_status = await fetchApi(
-            "user/change-verification",
-            ActivationData
-          );
-          setVarificationLdr(false);
-          setListindex(-1);
-          if (change_status.statusCode == 200) {
-            toast.success(change_status.data.message);
-            GetUserList();
-          } else {
-            if (change_status.data.message == "Unauthorized") {
-              setAuthTkn(change_status.data.message);
-            } else {
-              toast.error(change_status?.data?.message);
-            }
-          }
-        }
-      });
-    }
-  };
-  const twoOff = async (userId, email, i) => {
-    if (!twoFaLdr) {
-      Swal.fire({
-        title: "Are you sure?",
-        text: `You want to disable google authenticator for ${email}.`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#448ec5",
-        confirmButtonText: "Yes",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          setTwoFaLdr(true);
-          setListindex(i);
-          const ActivationData = JSON.stringify({
-            userId: userId,
-          });
-          const change_status = await fetchApi("user/two-off", ActivationData);
-          setTwoFaLdr(false);
-          setListindex(-1);
-          if (change_status.statusCode == 200) {
-            toast.success(change_status.data.message);
-            GetUserList();
-          } else {
-            if (change_status.data.message == "Unauthorized") {
-              setAuthTkn(change_status.data.message);
-            } else {
-              toast.error(change_status?.data?.message);
-            }
-          }
-        }
-      });
-    }
   };
   const checkPass = (pass) => {
     const v = pass;
