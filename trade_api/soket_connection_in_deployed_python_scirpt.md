@@ -291,3 +291,32 @@ Add health checks
 Add Docker version
 
 Just say 👍
+
+
+
+
+To temporarily stop any of those services, use stop:
+sudo systemctl stop trade_api
+sudo systemctl stop socket_crypto
+sudo systemctl stop socket_equity
+To temporarily stop any of those services, use restart:
+sudo systemctl restart trade_api
+sudo systemctl restart socket_crypto
+sudo systemctl restart socket_equity
+Stop AND prevent auto-restart (still temporary):
+sudo systemctl stop trade_api
+sudo systemctl disable trade_api
+sudo systemctl stop socket_crypto
+sudo systemctl disable socket_crypto
+sudo systemctl stop socket_equity
+sudo systemctl disable socket_equity
+Start again later
+sudo systemctl enable trade_api
+sudo systemctl start trade_api
+sudo systemctl enable socket_crypto
+sudo systemctl start socket_crypto
+sudo systemctl enable socket_equity
+sudo systemctl start socket_equity
+journalctl -u trade_api -f
+journalctl -u socket_crypto -f
+journalctl -u socket_equity -f

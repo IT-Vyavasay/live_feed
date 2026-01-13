@@ -8,3 +8,36 @@ https://algoapi.smartidealab.com/api/docs/#/close-order/close_order_list
 
 # web socket link
 wss://algoapi.smartidealab.com/ws/trades/
+
+
+
+
+{
+  "tradeId": "BTC-PEND-0001",
+  "strategyCode": "TEST_STRATEGY",
+  "isShortSell": false,
+  "qty": 1,
+
+  "entryPrice": null,
+  "exitPrice": null,
+
+  "openAt": null,
+  "closeAt": null,
+
+  "pnl": 0.0,
+
+  "securityType": "CRYPTO",
+  "instrumentToken": "BTCUSDT",
+  "exchangeSegment": "BINANCE",
+
+  "status": "WAITING",
+
+  "triggerPrice": 43500.50
+}
+
+
+{
+    "strategyCode": "TEST_STRATEGY",
+    "tradeId": "BTC-PEND-0001",
+    "event": "TRADE_OPENED"
+}

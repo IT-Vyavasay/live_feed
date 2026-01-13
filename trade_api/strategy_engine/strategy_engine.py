@@ -6,13 +6,10 @@ from strategy_engine.current_logic import process_current_orders
 from asgiref.sync import sync_to_async 
 from api.models import PendingOrder, CurrentOrder
 def on_tick_sync(tick):
-    orders = PendingOrder.objects.all()
-    # print("Tick123:", tick.instrument_token)
-    # print("tick================>", tick)
-    for order in orders:
-        print(order.tradeId)
-    if not should_process(tick.instrument_token):
-        print("stopped", )
+    # orders = PendingOrder.objects.all()
+    # for order in orders:
+    #     print(order.tradeId)
+    if not should_process(tick.instrument_token): 
    
         return
 

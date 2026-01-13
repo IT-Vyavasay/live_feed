@@ -14,7 +14,7 @@ class PendingOrderViewSet(viewsets.ModelViewSet):
     serializer_class = PendingOrderSerializer
 
 
-class CloseOrderViewSet(WebSocketModelMixin, viewsets.ModelViewSet):
+class CloseOrderViewSet(viewsets.ModelViewSet):
     queryset = CloseOrder.objects.all()
     serializer_class = CloseOrderSerializer
 

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
@@ -47,7 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'drf_spectacular',
-    'channels'
+    'channels',
+    'corsheaders', 
     
 ]
 
@@ -74,6 +76,7 @@ SPECTACULAR_SETTINGS = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # 👈 MUST BE FIRST
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,6 +85,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'trade_api.urls'
 
