@@ -22,7 +22,7 @@ from django.utils import timezone
 def open_trade(order, ltp):
 
     now = timezone.now()
-    stop_loss = ltp * 0.955
+    stop_loss = ltp * 0.995
     target = ltp * 1.05
 
     common_data = {
@@ -41,13 +41,13 @@ def open_trade(order, ltp):
     }
 
     # Remove pending order
-    print("ORDER DELETING==================>:", order.tradeId)  
+    print("step 1 ORDER DELETING==================>:", order.tradeId)  
     order.delete()
-    print("ORDER DELETED==================>:", order.tradeId)  
+    print("step 1  ORDER DELETED==================>:", order.tradeId)  
     # Create open trade
-    print("ORDER ADDING==================>:", order.tradeId)  
+    print("step 1  ORDER ADDING==================>:", order.tradeId)  
     CurrentOrder.objects.create(**common_data)
-    print("ORDER ADDED==================>:", order.tradeId)  
+    print("step 1  ORDER ADDED==================>:", order.tradeId)  
     # Send WebSocket event 
     send_ws_event(
         group="trade_updates",
